@@ -1,0 +1,450 @@
+/* ==========================================================================
+   LAYOUT STYLES & GRIDS
+   Akhil Kumar Singh — AI & Software Engineer Portfolio
+   ========================================================================== */
+
+/* Page Container */
+.site-wrapper {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .site-wrapper {
+    padding: 0 var(--space-2xl);
+  }
+}
+
+/* ==========================================================================
+   FLOATING HEADER DOCK
+   ========================================================================== */
+.header-dock {
+  position: fixed;
+  top: var(--space-md);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-header);
+  pointer-events: none;
+  padding: 0 var(--space-md);
+}
+
+.dock-container {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: var(--bg-dock);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 0.65rem 0.45rem var(--space-lg);
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.dock-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-mono);
+  font-weight: var(--fw-bold);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.dock-brand .brand-glyph {
+  color: var(--accent-secondary);
+}
+
+.dock-nav {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+@media (min-width: 860px) {
+  .dock-nav {
+    display: flex;
+  }
+}
+
+.dock-nav-item {
+  position: relative;
+}
+
+.dock-nav-link {
+  display: block;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.88rem;
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  transition: color var(--duration-fast) var(--ease-smooth);
+  position: relative;
+}
+
+.dock-nav-link:hover {
+  color: var(--text-primary);
+}
+
+.dock-nav-link.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="light"] .dock-nav-link.active {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.dock-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* Mobile Nav Toggle */
+.mobile-nav-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+}
+
+@media (min-width: 860px) {
+  .mobile-nav-toggle {
+    display: none;
+  }
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-glass);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  z-index: var(--z-drawer);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.mobile-drawer.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-drawer-close {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-drawer-links {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.mobile-drawer-link {
+  font-size: 1.8rem;
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  display: inline-block;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.mobile-drawer-link:hover {
+  color: var(--accent-secondary);
+}
+
+/* ==========================================================================
+   SECTION STRUCTURE & SPACING
+   ========================================================================== */
+section {
+  position: relative;
+  padding: var(--space-4xl) 0;
+}
+
+@media (min-width: 992px) {
+  section {
+    padding: var(--space-5xl) 0;
+  }
+}
+
+.section-header {
+  margin-bottom: var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 780px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+}
+
+.section-title {
+  position: relative;
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   HERO SECTION LAYOUT
+   ========================================================================== */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: calc(var(--space-5xl) + 2rem);
+  padding-bottom: var(--space-3xl);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--space-3xl);
+  }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.hero-badge-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.hero-title {
+  line-height: 1.08;
+}
+
+.hero-title .name-highlight {
+  display: block;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-bio {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 620px;
+}
+
+.hero-cta-cluster {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
+}
+
+.hero-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-subtle);
+  margin-top: var(--space-sm);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-num {
+  font-family: var(--font-mono);
+  font-size: 1.65rem;
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   BENTO GRID LAYOUT (PROJECTS & FOUNDATIONS)
+   ========================================================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .bento-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.bento-col-12 {
+  grid-column: span 1 / -1;
+}
+
+@media (min-width: 1100px) {
+  .bento-col-8 { grid-column: span 8; }
+  .bento-col-7 { grid-column: span 7; }
+  .bento-col-6 { grid-column: span 6; }
+  .bento-col-5 { grid-column: span 5; }
+  .bento-col-4 { grid-column: span 4; }
+}
+
+/* ==========================================================================
+   TIMELINE / EXPERIENCE & LEADERSHIP LAYOUT
+   ========================================================================== */
+.timeline-stream {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding-left: var(--space-2xl);
+}
+
+.timeline-stream::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 11px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--border-subtle) 100%);
+}
+
+.timeline-card-node {
+  position: relative;
+}
+
+.timeline-node-dot {
+  position: absolute;
+  top: 1.5rem;
+  left: calc(-1 * var(--space-2xl) + 6px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-primary);
+  z-index: 2;
+}
+
+/* ==========================================================================
+   SKILLS & ARSENAL MATRIX LAYOUT
+   ========================================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* ==========================================================================
+   CONTACT SECTION & FOOTER
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+}
+
+@media (min-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1.15fr;
+  }
+}
+
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-2xl) 0;
+  position: relative;
+  background: var(--bg-primary);
+  z-index: 1;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    text-align: left;
+  }
+}

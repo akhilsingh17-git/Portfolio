@@ -1,0 +1,157 @@
+/* ==========================================================================
+   ANIMATIONS & MICRO-INTERACTIONS
+   Akhil Kumar Singh — AI & Software Engineer Portfolio
+   ========================================================================== */
+
+/* Pulse Ring on Status Beacon */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* Subtle Floating Animation */
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float-subtle 6s ease-in-out infinite;
+}
+
+/* Gradient Beam Sweep */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-flow 8s ease infinite;
+}
+
+/* Border Beam Effect */
+.border-beam {
+  position: relative;
+}
+
+.border-beam::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-primary) 50%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: beam-rotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes beam-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Scroll-Driven Reveal Classes */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-spring), transform 0.8s var(--ease-spring);
+  will-change: opacity, transform;
+}
+
+.reveal-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  will-change: opacity;
+}
+
+.reveal-fade.is-revealed {
+  opacity: 1;
+}
+
+/* Stagger delays */
+.delay-1 { transition-delay: 100ms; }
+.delay-2 { transition-delay: 200ms; }
+.delay-3 { transition-delay: 300ms; }
+.delay-4 { transition-delay: 400ms; }
+.delay-5 { transition-delay: 500ms; }
+
+/* Micro-interaction: Magnetic hover transition */
+.magnetic-item {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-spring);
+}
+
+/* Audio wave animation */
+.sound-waves {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+
+.sound-bar {
+  width: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.sound-bar:nth-child(1) { height: 6px; }
+.sound-bar:nth-child(2) { height: 12px; }
+.sound-bar:nth-child(3) { height: 8px; }
+
+.sound-active .sound-bar:nth-child(1) {
+  animation: sound-bounce 0.8s ease-in-out infinite alternate;
+}
+
+.sound-active .sound-bar:nth-child(2) {
+  animation: sound-bounce 0.8s 0.2s ease-in-out infinite alternate;
+}
+
+.sound-active .sound-bar:nth-child(3) {
+  animation: sound-bounce 0.8s 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes sound-bounce {
+  0% { height: 4px; }
+  100% { height: 14px; }
+}

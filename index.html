@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akhil Kumar Singh — AI Engineer & Software Developer</title>
+  <meta name="description" content="Portfolio of Akhil Kumar Singh — Information Technology undergraduate specializing in Machine Learning, Computer Vision, NLP, and Full-Stack Engineering.">
+  <meta name="theme-color" content="#08090e">
+
+  <!-- OpenGraph / Social Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Akhil Kumar Singh — AI Engineer & Software Developer">
+  <meta property="og:description" content="Explore production projects spanning BERT/RoBERTa NLP, real-time Computer Vision on embedded hardware, and modern React architectures.">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Canvas & Gradients -->
+  <div class="ambient-mesh" aria-hidden="true"></div>
+  <canvas id="neural-canvas" aria-hidden="true"></canvas>
+
+  <!-- Fluid Custom Cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true">
+    <span></span>
+  </div>
+
+  <!-- High-Tech Preloader -->
+  <div id="preloader" class="preloader" aria-live="polite">
+    <div class="preloader-symbol">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="42" stroke="rgba(99, 102, 241, 0.25)" stroke-width="2" stroke-dasharray="6 6"/>
+        <circle cx="50" cy="50" r="42" stroke="url(#preloader-grad)" stroke-width="3" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="180">
+          <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <defs>
+          <linearGradient id="preloader-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366f1"/>
+            <stop offset="0.5" stop-color="#06b6d4"/>
+            <stop offset="1" stop-color="#a855f7"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="preloader-glyph">AS</div>
+    </div>
+    <div id="preloader-counter" class="preloader-counter">00%</div>
+    <div class="preloader-bar-wrap">
+      <div id="preloader-bar" class="preloader-bar"></div>
+    </div>
+    <div id="preloader-status" class="preloader-status">BOOTING ARCHITECTURE...</div>
+  </div>
+
+  <!-- =========================================================================
+       FLOATING HEADER DOCK
+       ========================================================================= -->
+  <header class="header-dock" role="banner">
+    <div class="dock-container">
+      <a href="#hero" class="dock-brand" aria-label="Akhil Kumar Singh Home">
+        <span class="brand-glyph">&lt;</span>AKHIL<span class="brand-glyph">/&gt;</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="dock-nav">
+          <li class="dock-nav-item"><a href="#about" class="dock-nav-link">Overview</a></li>
+          <li class="dock-nav-item"><a href="#projects" class="dock-nav-link">Projects</a></li>
+          <li class="dock-nav-item"><a href="#skills" class="dock-nav-link">Arsenal</a></li>
+          <li class="dock-nav-item"><a href="#experience" class="dock-nav-link">Journey</a></li>
+          <li class="dock-nav-item"><a href="#terminal" class="dock-nav-link">CLI</a></li>
+          <li class="dock-nav-item"><a href="#contact" class="dock-nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="dock-actions">
+        <!-- Audio Synthesizer Toggle -->
+        <button class="btn btn-icon btn-secondary sound-toggle-btn" aria-label="Enable sound feedback" title="Toggle UI sound effects">
+          <div class="sound-waves" aria-hidden="true">
+            <span class="sound-bar"></span>
+            <span class="sound-bar"></span>
+            <span class="sound-bar"></span>
+          </div>
+        </button>
+
+        <!-- Dark / Light Mode Toggle -->
+        <button class="btn btn-icon btn-secondary theme-toggle-btn" aria-label="Toggle theme mode" title="Switch Theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Connect Quick Action -->
+        <a href="#contact" class="btn btn-sm btn-primary">Connect</a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-nav-toggle" aria-label="Open mobile navigation drawer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <button class="mobile-drawer-close" aria-label="Close navigation menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <ul class="mobile-drawer-links">
+      <li><a href="#about" class="mobile-drawer-link">Overview</a></li>
+      <li><a href="#projects" class="mobile-drawer-link">Projects</a></li>
+      <li><a href="#skills" class="mobile-drawer-link">Arsenal</a></li>
+      <li><a href="#experience" class="mobile-drawer-link">Experience</a></li>
+      <li><a href="#terminal" class="mobile-drawer-link">Developer CLI</a></li>
+      <li><a href="#contact" class="mobile-drawer-link">Get in Touch</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="site-wrapper" id="main-content">
+
+    <!-- =======================================================================
+         01 // HERO SECTION
+         ======================================================================= -->
+    <section id="hero" class="hero-section" aria-label="Introduction">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-strip reveal-up">
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              Available for AI Engineer / SDE Roles
+            </div>
+            <div class="category-tag">B.Tech IT 2023–2027</div>
+          </div>
+
+          <h1 class="hero-title reveal-up delay-1">
+            Akhil Kumar Singh
+            <span class="name-highlight">AI Engineer & Software Developer</span>
+          </h1>
+
+          <p class="hero-bio reveal-up delay-2">
+            Information Technology undergraduate with a solid grounding in Operating Systems, DBMS, OOP, and Data Structures & Algorithms. Shipped three independent production systems spanning computer vision and NLP, including transformer-based classifiers served via live REST APIs.
+          </p>
+
+          <div class="hero-cta-cluster reveal-up delay-3">
+            <a href="#projects" class="btn btn-primary">
+              <span>Explore Projects</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span>Initiate Uplink</span>
+            </a>
+            <button class="btn btn-secondary copy-trigger" data-copy="+919569756996" title="Copy Phone Number">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>+91 9569756996</span>
+            </button>
+          </div>
+
+          <div class="hero-stats-bar reveal-up delay-4">
+            <div class="stat-item">
+              <span class="stat-num">03</span>
+              <span class="stat-label">Production Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">NLP + CV</span>
+              <span class="stat-label">Model Pipelines</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">01</span>
+              <span class="stat-label">Industrial Internship</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">PSIT</span>
+              <span class="stat-label">Information Tech</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Interactive Architectural Preview -->
+        <div class="hero-visual-card glass-card reveal-up delay-3" data-cursor="explore" data-cursor-text="SYSTEM">
+          <div class="visual-card-header">
+            <div class="window-dots">
+              <span class="window-dot red"></span>
+              <span class="window-dot yellow"></span>
+              <span class="window-dot green"></span>
+            </div>
+            <div class="window-title">system_runtime_monitor.py</div>
+            <div class="category-tag">v2.4 Live</div>
+          </div>
+
+          <div class="model-flow-diagram">
+            <div class="pipeline-step">
+              <div class="pipeline-step-left">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <div>
+                  <div class="step-name">BERT & RoBERTa Classifier</div>
+                  <div class="step-desc">Transformers • Hugging Face • Live REST API</div>
+                </div>
+              </div>
+              <span class="step-badge">NLP</span>
+            </div>
+
+            <div class="pipeline-step">
+              <div class="pipeline-step-left">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <div>
+                  <div class="step-name">ESP32-CAM Landmark Detection</div>
+                  <div class="step-desc">OpenCV • Dlib • Real-Time EAR Metric</div>
+                </div>
+              </div>
+              <span class="step-badge">Vision IoT</span>
+            </div>
+
+            <div class="pipeline-step">
+              <div class="pipeline-step-left">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <div>
+                  <div class="step-name">React.js Modular UI Engine</div>
+                  <div class="step-desc">Reusable Components • External Video API</div>
+                </div>
+              </div>
+              <span class="step-badge">React Frontend</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         02 // ABOUT & CORE FOUNDATIONS
+         ======================================================================= -->
+    <section id="about" aria-label="Professional Summary and Philosophy">
+      <div class="section-header reveal-up">
+        <span class="section-tag">02 // Core Philosophy</span>
+        <h2 class="section-title">Bridging Algorithms, Systems, and Scalable Logic</h2>
+        <p class="section-subtitle">
+          From machine learning models to low-latency backend pipelines and user interfaces.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="glass-card bento-col-8 reveal-up">
+          <div class="category-tag" style="margin-bottom: var(--space-sm);">Professional Summary</div>
+          <h3 style="margin-bottom: var(--space-sm); font-size: 1.45rem;">Full-Stack Machine Learning & Software Engineering</h3>
+          <p style="margin-bottom: var(--space-md); font-size: 1.05rem; line-height: 1.75;">
+            "Information Technology undergraduate with a solid grounding in Operating Systems, DBMS, Object-Oriented Programming, and Data Structures & Algorithms. Shipped three independent projects spanning computer vision and NLP, including an ML classifier served through a live API. Comfortable across the stack, from algorithm design to backend logic to database design, and looking to grow into an AI Engineer / Software Development Engineer role."
+          </p>
+          <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
+            <span class="category-tag">Operating Systems</span>
+            <span class="category-tag">DBMS</span>
+            <span class="category-tag">OOP</span>
+            <span class="category-tag">Data Structures & Algorithms</span>
+            <span class="category-tag">System Design Fundamentals</span>
+          </div>
+        </div>
+
+        <div class="glass-card bento-col-4 reveal-up delay-1">
+          <div class="category-tag" style="margin-bottom: var(--space-sm);">Education Node</div>
+          <h4 style="font-size: 1.2rem; margin-bottom: 4px;">PSIT, Kanpur</h4>
+          <p style="font-size: 0.92rem; color: var(--accent-secondary); font-family: var(--font-mono); margin-bottom: var(--space-xs);">
+            B.Tech in Information Technology
+          </p>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: var(--space-md);">
+            2023 – 2027 • Current Aggregate: 64%
+          </p>
+          <div style="padding-top: var(--space-sm); border-top: 1px solid var(--border-subtle);">
+            <div style="font-weight: var(--fw-semibold); font-size: 0.9rem; color: var(--text-primary);">Dr. Virendra Swarup Education Centre</div>
+            <div style="font-size: 0.82rem; color: var(--text-muted);">Panki, Kanpur</div>
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-emerald); margin-top: 4px;">
+              10th: 87% • 12th: 70%
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         03 // KEY PROJECTS SHOWCASE
+         ======================================================================= -->
+    <section id="projects" aria-label="Key Production Projects">
+      <div class="section-header reveal-up">
+        <span class="section-tag">03 // Engineered Systems</span>
+        <h2 class="section-title">Applied Machine Learning & Production Implementations</h2>
+        <p class="section-subtitle">
+          Three independent systems engineered from algorithm design and embedded hardware to production APIs and browser extensions.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Project 1: Fake News Detection Framework -->
+        <div class="glass-card project-card bento-col-6 reveal-up" data-cursor="explore" data-cursor-text="BERT">
+          <div class="project-top">
+            <div class="project-header-bar">
+              <span class="project-index">01 // NLP & REST API</span>
+              <div class="project-tags">
+                <span class="category-tag">BERT</span>
+                <span class="category-tag">RoBERTa</span>
+                <span class="category-tag">REST API</span>
+                <span class="category-tag">Chrome Ext</span>
+              </div>
+            </div>
+
+            <h3 class="project-title">Fake News Detection Framework</h3>
+            <p class="project-desc">
+              Trained BERT and RoBERTa models to flag likely fake news articles and served predictions through a high-performance REST API for any submitted text.
+            </p>
+
+            <ul class="project-key-bullets">
+              <li>Trained transformer-based models (BERT & RoBERTa) on NLP classification benchmarks to distinguish nuance and misinformation patterns.</li>
+              <li>Put the same model behind two front doors — a dedicated web app and an in-browser Chrome extension — so a reader can verify an article in real time without leaving the page.</li>
+              <li>Engineered a low-latency REST API endpoint capable of processing incoming article payloads on demand.</li>
+            </ul>
+          </div>
+
+          <!-- Interactive Simulator Box -->
+          <div class="simulator-box">
+            <div class="simulator-header">
+              <span>TEST CLASSIFIER SIMULATOR</span>
+              <span style="color: var(--accent-secondary);">BERT / RoBERTa Runtime</span>
+            </div>
+            <div class="sim-input-row">
+              <input type="text" id="sim-fake-input" class="sim-input" value="Scientific breakthrough discovered in recent laboratory trial" placeholder="Type or paste article headline..." aria-label="Article headline text">
+              <button id="sim-fake-btn" class="sim-btn">Analyze</button>
+            </div>
+            <div class="sim-result-row">
+              <span id="sim-fake-label"><span style="color: #10b981;">Verified: High Credibility</span></span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="sim-score-bar-bg">
+                  <div id="sim-fake-fill" class="sim-score-bar-fill"></div>
+                </div>
+                <span id="sim-fake-score">94.2% Confidence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Driver Drowsiness Detection System -->
+        <div class="glass-card project-card bento-col-6 reveal-up delay-1" data-cursor="explore" data-cursor-text="VISION">
+          <div class="project-top">
+            <div class="project-header-bar">
+              <span class="project-index">02 // COMPUTER VISION & IOT</span>
+              <div class="project-tags">
+                <span class="category-tag">OpenCV</span>
+                <span class="category-tag">ESP32-CAM</span>
+                <span class="category-tag">Dlib</span>
+                <span class="category-tag">DeepFace</span>
+                <span class="category-tag">Imutils</span>
+              </div>
+            </div>
+
+            <h3 class="project-title">Driver Drowsiness Detection System</h3>
+            <p class="project-desc">
+              Real-time facial-landmark detection on an ESP32-CAM calculating Eye Aspect Ratio (EAR) continuously, sounding a hardware alarm the instant eye closure exceeds safety thresholds.
+            </p>
+
+            <ul class="project-key-bullets">
+              <li>Wired an ESP32-CAM module to stream frames, perform 68-point facial landmark tracking, and compute Eye Aspect Ratio (EAR) dynamically.</li>
+              <li>Combined OpenCV, Dlib, Imutils, and DeepFace in an optimized processing pipeline tuned to stay fast enough to catch a closing eye before it mattered.</li>
+              <li>Integrated a hardware buzzer alert trigger fired when closure duration crosses the critical threshold.</li>
+            </ul>
+          </div>
+
+          <!-- Interactive Simulator Box -->
+          <div class="simulator-box">
+            <div class="simulator-header">
+              <span>REAL-TIME EAR MONITOR</span>
+              <span style="color: var(--accent-secondary);">ESP32-CAM Stream</span>
+            </div>
+            <div class="ear-visualizer-box">
+              <div class="ear-metric">
+                <span class="ear-val" id="ear-val">0.34</span>
+                <span class="ear-state">Current Eye Aspect Ratio</span>
+              </div>
+              <div id="ear-badge" class="ear-status-badge">
+                <span class="status-dot"></span> Active (Awake)
+              </div>
+              <button id="test-drowsy-btn" class="btn btn-sm btn-secondary" style="font-family: var(--font-mono); font-size: 0.72rem;">
+                Simulate Eye Closure
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: YouTube Clone — React.js -->
+        <div class="glass-card project-card bento-col-12 reveal-up" data-cursor="explore" data-cursor-text="REACT">
+          <div class="project-top">
+            <div class="project-header-bar">
+              <span class="project-index">03 // FRONTEND ARCHITECTURE</span>
+              <div class="project-tags">
+                <span class="category-tag">React.js</span>
+                <span class="category-tag">Component Design</span>
+                <span class="category-tag">REST API</span>
+                <span class="category-tag">CSS3</span>
+              </div>
+            </div>
+
+            <h3 class="project-title">YouTube Clone — Reusable Component Architecture</h3>
+            <p class="project-desc">
+              Rebuilt YouTube's core browsing experience in React — search, category filters, and a responsive video grid — pulling live results dynamically from an external video API.
+            </p>
+
+            <ul class="project-key-bullets">
+              <li>Deconstructed the interface into clean, reusable components (SearchHeader, CategoryFilterChips, ResponsiveVideoGrid, VideoCard) early on.</li>
+              <li>Enabled effortless feature scalability, ensuring new UI widgets and category feeds could be attached without reworking existing components.</li>
+              <li>Integrated live external video API data with responsive styling across all screen formats.</li>
+            </ul>
+          </div>
+
+          <!-- Component Architecture Breakdown -->
+          <div class="component-tree-box">
+            <div class="comp-box">
+              <strong>&lt;SearchHeader /&gt;</strong>
+              <div>Debounced Query State</div>
+            </div>
+            <div class="comp-box">
+              <strong>&lt;CategoryFilterChips /&gt;</strong>
+              <div>Dynamic Tag Dispatcher</div>
+            </div>
+            <div class="comp-box">
+              <strong>&lt;ResponsiveVideoGrid /&gt;</strong>
+              <div>Async API Data Hydration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         04 // TECHNICAL ARSENAL & SKILLS MATRIX
+         ======================================================================= -->
+    <section id="skills" aria-label="Technical Arsenal and Skills">
+      <div class="section-header reveal-up">
+        <span class="section-tag">04 // Technical Arsenal</span>
+        <h2 class="section-title">Verified Technologies & Computer Science Foundations</h2>
+        <p class="section-subtitle">
+          Solid competencies derived directly from shipped implementations and academic coursework.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Languages -->
+        <div class="glass-card reveal-up">
+          <h4 style="display: flex; align-items: center; gap: 8px; margin-bottom: var(--space-md); color: var(--accent-secondary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            Programming Languages
+          </h4>
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+            <div class="pipeline-step">
+              <span class="step-name">Java</span>
+              <span class="category-tag">Object-Oriented & DSA</span>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-name">Python</span>
+              <span class="category-tag">ML, NLP, Computer Vision</span>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-name">SQL</span>
+              <span class="category-tag">Relational Queries & Schemas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core CS Fundamentals -->
+        <div class="glass-card reveal-up delay-1">
+          <h4 style="display: flex; align-items: center; gap: 8px; margin-bottom: var(--space-md); color: var(--accent-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+            Core CS Fundamentals
+          </h4>
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+            <div class="pipeline-step">
+              <span class="step-name">Data Structures & Algorithms</span>
+              <span class="category-tag">3★ HackerRank</span>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-name">Operating Systems</span>
+              <span class="category-tag">Processes & Concurrency</span>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-name">DBMS & System Design</span>
+              <span class="category-tag">Architecture</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Machine Learning & AI -->
+        <div class="glass-card reveal-up delay-2">
+          <h4 style="display: flex; align-items: center; gap: 8px; margin-bottom: var(--space-md); color: var(--accent-tertiary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+              <path d="M12 2a10 10 0 0 1 10 10h-10V2z"></path>
+            </svg>
+            Machine Learning / AI
+          </h4>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span class="category-tag">BERT</span>
+            <span class="category-tag">RoBERTa</span>
+            <span class="category-tag">OpenCV</span>
+            <span class="category-tag">Dlib</span>
+            <span class="category-tag">DeepFace</span>
+            <span class="category-tag">NLP</span>
+            <span class="category-tag">Computer Vision</span>
+            <span class="category-tag">Imutils</span>
+          </div>
+        </div>
+
+        <!-- Web, Databases & Platforms -->
+        <div class="glass-card reveal-up delay-3">
+          <h4 style="display: flex; align-items: center; gap: 8px; margin-bottom: var(--space-md); color: var(--accent-emerald);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            Web, Databases & Tools
+          </h4>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span class="category-tag">React.js</span>
+            <span class="category-tag">HTML5 & CSS3</span>
+            <span class="category-tag">REST APIs</span>
+            <span class="category-tag">MySQL</span>
+            <span class="category-tag">Git & GitHub</span>
+            <span class="category-tag">Vercel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         05 // INDUSTRIAL EXPERIENCE & LEADERSHIP
+         ======================================================================= -->
+    <section id="experience" aria-label="Industrial Experience and Leadership">
+      <div class="section-header reveal-up">
+        <span class="section-tag">05 // Chronology & Impact</span>
+        <h2 class="section-title">Applied Experience & Operational Leadership</h2>
+        <p class="section-subtitle">
+          Real-world problem-solving in production machine learning environments and leadership under operational pressure.
+        </p>
+      </div>
+
+      <div class="timeline-stream">
+        <!-- Experience Item -->
+        <div class="timeline-card-node reveal-up">
+          <div class="timeline-node-dot"></div>
+          <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xs);">
+              <h3 style="font-size: 1.3rem;">Machine Learning Intern</h3>
+              <span class="category-tag" style="background: rgba(99, 102, 241, 0.15); color: var(--accent-primary);">
+                Jul 2026 – Sep 2026
+              </span>
+            </div>
+            <div style="font-family: var(--font-mono); color: var(--accent-secondary); font-size: 0.9rem; margin-bottom: var(--space-sm);">
+              Unified Mentor Pvt. Ltd.
+            </div>
+            <p style="font-size: 0.98rem; line-height: 1.7; color: var(--text-secondary);">
+              Spent two months working through Python, machine learning, and NLP tasks on real project work rather than tutorials, which is where most of my applied ML skill comes from.
+            </p>
+          </div>
+        </div>
+
+        <!-- Leadership: FOOTPRINTS Sports Festival -->
+        <div class="timeline-card-node reveal-up delay-1">
+          <div class="timeline-node-dot" style="border-color: var(--accent-secondary); box-shadow: 0 0 10px var(--accent-secondary);"></div>
+          <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xs);">
+              <h3 style="font-size: 1.25rem;">Coordinator Head — FOOTPRINTS (PSIT Sports Festival)</h3>
+              <span class="category-tag">2026</span>
+            </div>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary);">
+              Ran the operations side of a college-wide sports fest — schedules, logistics, and keeping multiple cross-functional teams pointed at the same plan.
+            </p>
+          </div>
+        </div>
+
+        <!-- Leadership: Energy Club Secretary -->
+        <div class="timeline-card-node reveal-up delay-2">
+          <div class="timeline-node-dot" style="border-color: var(--accent-tertiary); box-shadow: 0 0 10px var(--accent-tertiary);"></div>
+          <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xs);">
+              <h3 style="font-size: 1.25rem;">Secretary — Energy Club (Sports Club), PSIT</h3>
+              <span class="category-tag">2024 – 2025</span>
+            </div>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary);">
+              Organized and ran several sports events for the club, handling logistics and keeping participants engaged from planning through event day.
+            </p>
+          </div>
+        </div>
+
+        <!-- Achievement: Football Tournament Captain -->
+        <div class="timeline-card-node reveal-up delay-3">
+          <div class="timeline-node-dot" style="border-color: var(--accent-emerald); box-shadow: 0 0 10px var(--accent-emerald);"></div>
+          <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xs);">
+              <h3 style="font-size: 1.25rem;">Runner-Up — Inter-State College Football Tournament</h3>
+              <span class="category-tag">HBTU • 2024</span>
+            </div>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary);">
+              Captained the team to a 2nd-place finish, calling strategy and making in-game decisions under pressure.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         06 // VERIFIED CERTIFICATIONS
+         ======================================================================= -->
+    <section id="credentials" aria-label="Certifications and Verified Credentials">
+      <div class="section-header reveal-up">
+        <span class="section-tag">06 // Credentials</span>
+        <h2 class="section-title">Verified Certifications & Accreditations</h2>
+      </div>
+
+      <div class="bento-grid">
+        <div class="cert-card bento-col-6 reveal-up">
+          <div class="cert-info">
+            <span class="cert-title">Claude Code 101</span>
+            <span class="cert-issuer">Anthropic</span>
+          </div>
+          <span class="category-tag">GenAI & Agents</span>
+        </div>
+
+        <div class="cert-card bento-col-6 reveal-up delay-1">
+          <div class="cert-info">
+            <span class="cert-title">Problem Solving (3 Stars)</span>
+            <span class="cert-issuer">HackerRank</span>
+          </div>
+          <span class="category-tag">Data Structures</span>
+        </div>
+
+        <div class="cert-card bento-col-6 reveal-up delay-2">
+          <div class="cert-info">
+            <span class="cert-title">Fundamentals of Python (Part 1 & 2)</span>
+            <span class="cert-issuer">Infosys Springboard</span>
+          </div>
+          <span class="category-tag">Programming</span>
+        </div>
+
+        <div class="cert-card bento-col-6 reveal-up delay-3">
+          <div class="cert-info">
+            <span class="cert-title">CSS & HTML5</span>
+            <span class="cert-issuer">Infosys Springboard</span>
+          </div>
+          <span class="category-tag">Web Standards</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         07 // INTERACTIVE RECRUITER CLI TERMINAL
+         ======================================================================= -->
+    <section id="terminal" aria-label="Interactive Recruiter Developer CLI">
+      <div class="section-header reveal-up">
+        <span class="section-tag">07 // Recruiter Shell</span>
+        <h2 class="section-title">Developer Terminal Interface</h2>
+        <p class="section-subtitle">
+          Query Akhil's technical stack, inspect projects, or trigger contact commands directly in the shell.
+        </p>
+      </div>
+
+      <div class="terminal-shell reveal-up">
+        <div class="terminal-header">
+          <div class="window-dots">
+            <span class="window-dot red"></span>
+            <span class="window-dot yellow"></span>
+            <span class="window-dot green"></span>
+          </div>
+          <div class="terminal-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            akhil@dev-env: ~ (interactive shell)
+          </div>
+          <span class="category-tag">zsh / bash</span>
+        </div>
+
+        <div id="terminal-body" class="terminal-body" role="log" aria-live="polite">
+          <div class="terminal-line info">
+            [System initialized]: Akhil Kumar Singh Portfolio Runtime loaded.
+          </div>
+          <div class="terminal-line success">
+            Type <span class="command" style="font-weight: bold; color: #06b6d4;">help</span> to view available commands, or click any chip below.
+          </div>
+        </div>
+
+        <div class="terminal-chips">
+          <span class="terminal-chip" data-cmd="whoami">whoami</span>
+          <span class="terminal-chip" data-cmd="skills">skills</span>
+          <span class="terminal-chip" data-cmd="projects">projects</span>
+          <span class="terminal-chip" data-cmd="experience">experience</span>
+          <span class="terminal-chip" data-cmd="education">education</span>
+          <span class="terminal-chip" data-cmd="contact">contact</span>
+          <span class="terminal-chip" data-cmd="clear">clear</span>
+        </div>
+
+        <div class="terminal-prompt-row" style="padding: 0.75rem 1.25rem; background: rgba(0,0,0,0.3);">
+          <span class="terminal-prompt-prefix">akhil@dev:~$</span>
+          <input type="text" id="terminal-input" class="terminal-input" placeholder="Type a command (e.g. whoami, skills, projects)..." autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         08 // CONTACT & DIRECT UPLINK
+         ======================================================================= -->
+    <section id="contact" aria-label="Contact Information and Uplink">
+      <div class="section-header reveal-up">
+        <span class="section-tag">08 // Initiate Uplink</span>
+        <h2 class="section-title">Let's Build Something Exceptional</h2>
+        <p class="section-subtitle">
+          Open to AI Engineer, Machine Learning, and Software Development Engineer roles. Reach out directly or dispatch a transmission below.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Direct Channels Card -->
+        <div class="glass-card reveal-up" style="display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-xl);">
+          <div>
+            <span class="category-tag" style="margin-bottom: var(--space-sm);">Direct Channels</span>
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-xs);">Akhil Kumar Singh</h3>
+            <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: var(--space-lg);">
+              Kanpur, Uttar Pradesh, India • Ready for full-time & high-impact opportunities.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+              <!-- Phone -->
+              <a href="tel:+919569756996" class="pipeline-step copy-trigger" data-copy="9569756996" title="Click to call or copy">
+                <div class="pipeline-step-left">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <div>
+                    <div class="step-name">+91 9569756996</div>
+                    <div class="step-desc">Direct Mobile / WhatsApp</div>
+                  </div>
+                </div>
+                <span class="category-tag">Click to Copy</span>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="pipeline-step">
+                <div class="pipeline-step-left">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                  <div>
+                    <div class="step-name">LinkedIn Profile</div>
+                    <div class="step-desc">Professional Network & Career Updates</div>
+                  </div>
+                </div>
+                <span class="category-tag">Connect ↗</span>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="pipeline-step">
+                <div class="pipeline-step-left">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                  <div>
+                    <div class="step-name">GitHub Repositories</div>
+                    <div class="step-desc">Open Source, NLP & CV Codebases</div>
+                  </div>
+                </div>
+                <span class="category-tag">Explore ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: var(--space-md);">
+            STATUS: Open for full-time AI Engineer & SDE placement conversations.
+          </div>
+        </div>
+
+        <!-- Interactive Contact Form -->
+        <div class="glass-card reveal-up delay-1">
+          <span class="category-tag" style="margin-bottom: var(--space-sm);">Direct Message</span>
+          <h3 style="font-size: 1.45rem; margin-bottom: var(--space-md);">Dispatch a Transmission</h3>
+
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="form-name" class="form-label">Your Name / Organization</label>
+              <input type="text" id="form-name" class="form-control" placeholder="e.g. Recruiters, Engineering Team" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-email" class="form-label">Your Email</label>
+              <input type="email" id="form-email" class="form-control" placeholder="name@company.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-message" class="form-label">Message Details</label>
+              <textarea id="form-message" class="form-control" placeholder="Tell Akhil about the role, technical challenge, or opportunity..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: var(--space-xs);">
+              <span>Transmit Message</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="site-wrapper">
+      <div class="footer-content">
+        <div>
+          <div style="font-family: var(--font-mono); font-weight: var(--fw-bold); font-size: 1rem; color: var(--text-primary); margin-bottom: 4px;">
+            AKHIL KUMAR SINGH
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">
+            AI Engineer • Software Development Engineer • PSIT Kanpur (2023–2027)
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: var(--space-md);">
+          <a href="#hero" class="btn btn-sm btn-secondary" style="font-family: var(--font-mono);">
+            ↑ Return to Top
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast" class="toast-msg" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-emerald);">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span class="toast-text">Action completed successfully.</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/preloader.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
