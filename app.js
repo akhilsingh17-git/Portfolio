@@ -3,7 +3,7 @@
  * Akhil Kumar Singh — Portfolio
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   // =========================================================================
   // 1. CARD SPOTLIGHT & 3D TILT EFFECT
   // =========================================================================
@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   const revealElements = document.querySelectorAll('.reveal-up, .reveal-fade');
 
+  // Immediately reveal elements already in viewport
+  revealElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('is-revealed');
+    }
+  });
+
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -35,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     },
     {
-      threshold: 0.12,
-      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.05,
+      rootMargin: '0px 0px -20px 0px',
     }
   );
 
@@ -183,4 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
       contactForm.reset();
     });
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}

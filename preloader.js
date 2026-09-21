@@ -48,7 +48,7 @@
         document.body.classList.add('loaded');
 
         // Trigger entrance animations
-        const revealElements = document.querySelectorAll('.hero-section .reveal-up');
+        const revealElements = document.querySelectorAll('.reveal-up, .reveal-fade');
         revealElements.forEach(el => el.classList.add('is-revealed'));
       }, 350);
       return;
